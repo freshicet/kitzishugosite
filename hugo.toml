@@ -10,9 +10,3 @@ disableKinds = ["taxonomy", "term", "RSS"]
 
 [markup.goldmark.renderer]
   unsafe = true
-
-[menus]
-  [[menus.footer]]
-    name = "Privacy Policy"
-    url = "/privacy-policy/"
-    weight = 1

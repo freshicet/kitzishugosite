@@ -10,6 +10,7 @@
   <meta property="og:description" content="{{ site.Params.description }}">
   <meta property="og:url" content="{{ .Permalink }}">
   <meta property="og:image" content="{{ "wp-content/uploads/2022/02/Screenshot_3-edited.jpg" | absURL }}">
+  <link rel="preload" href="/fonts/karla-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
 </head>
 <body>
@@ -17,7 +18,10 @@
     {{ block "main" . }}{{ end }}
   </main>
   <footer>
-    {{ range site.Menus.footer }}<a href="{{ .URL }}">{{ .Name }}</a>{{ end }}
+    <div class="footer-band"></div>
+    <div class="site-info">
+      <a href="https://gohugo.io/">Built with Hugo</a><span class="sep">|</span>Privacy Policy: <a href="/privacy-policy/">Here</a>.
+    </div>
   </footer>
 </body>
 </html>
