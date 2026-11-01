@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ .Title }}{{ else }}{{ .Title }} – {{ site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ site.Params.description }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:description" content="{{ site.Params.description }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:image" content="{{ "wp-content/uploads/2022/02/Screenshot_3-edited.jpg" | absURL }}">
+  <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+</head>
+<body>
+  <main id="content">
+    {{ block "main" . }}{{ end }}
+  </main>
+  <footer>
+    {{ range site.Menus.footer }}<a href="{{ .URL }}">{{ .Name }}</a>{{ end }}
+  </footer>
+</body>
+</html>

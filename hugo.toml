@@ -1,0 +1,19 @@
+baseURL = "https://kitzis.org/"
+locale = "en-us"
+title = "Mind and Meaning"
+
+# Only the pages that exist on the current site
+disableKinds = ["taxonomy", "term", "RSS"]
+
+[params]
+  tagline = "A Flight of Imagination, A Voyage of Discovery"
+  description = "Mind and Meaning is a book on the nature of mind, and perhaps the meaning of meaning. It is a science fiction story and an introduction to cognitive science."
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[menus]
+  [[menus.footer]]
+    name = "Privacy Policy"
+    url = "/privacy-policy/"
+    weight = 1
