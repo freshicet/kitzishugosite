@@ -1,5 +1,4 @@
 baseURL = "https://kitzis.org/"
-locale = "en-us"
 title = "Mind and Meaning"
 
 # Only the pages that exist on the current site
