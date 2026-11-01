@@ -1,15 +1,23 @@
 {{ define "main" }}
-<img class="cover" src="/wp-content/uploads/2022/02/Screenshot_3-edited.jpg" alt="Mind and Meaning book cover">
-<hr>
-<div class="intro">{{ .Content }}</div>
-<hr>
-<div class="actions">
-  <p>Downloadable PDF</p>
-  <a class="button" href="/wp-content/uploads/2022/02/Mind-and-Meaning.pdf" download>Download</a>
+<figure class="wp-block-image is-style-rounded">
+  <img src="/wp-content/uploads/2022/02/Screenshot_3-edited.jpg" alt="Mind and Meaning cover image">
+</figure>
+
+<hr class="wp-block-separator">
+
+{{ .Content }}
+
+<hr class="wp-block-separator">
+
+<div class="wp-block-file">
+  <span>Downloadable PDF</span><a href="/wp-content/uploads/2022/02/Mind-and-Meaning.pdf" class="wp-block-file__button" download>Download</a>
 </div>
-<hr>
-<div class="actions">
-  <p>PDF Reader</p>
-  <a class="button" href="/wp-content/uploads/2022/02/Mind-and-Meaning.pdf">Read</a>
+
+<hr class="wp-block-separator">
+
+<div class="wp-block-file">
+  <span>PDF Reader</span><a href="/wp-content/uploads/2022/02/Mind-and-Meaning.pdf" class="wp-block-file__button" target="_blank" rel="noopener">Read</a>
 </div>
+
+<hr class="wp-block-separator">
 {{ end }}
