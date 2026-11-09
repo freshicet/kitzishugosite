@@ -1,50 +1,64 @@
-# kitzis.org – Hugo site
+# Mind and Meaning
 
-Static Hugo version of kitzis.org (*Mind and Meaning*): a landing page and a privacy policy. No theme dependency; the layouts and CSS are in this repo.
+Source for [kitzis.org](https://kitzis.org/), the website for *Mind and Meaning: A Flight of Imagination, A Voyage of Discovery*, a book on the nature of mind, and perhaps the meaning of meaning. It is a science fiction story and an introduction to cognitive science.
 
-## 1. Add the two files from WordPress (required)
+The site is a small static site built with [Hugo](https://gohugo.io/) and hosted on [Cloudflare Pages](https://pages.cloudflare.com/). It has no theme dependency: the layouts and styles are all in this repository.
 
-Hugo can't build the download buttons without the book PDF and cover image. Put them here, keeping the same paths WordPress used so existing links to the PDF keep working:
+## Project layout
 
 ```
-static/wp-content/uploads/2022/02/Mind-and-Meaning.pdf
-static/wp-content/uploads/2022/02/Screenshot_3-edited.jpg
+hugo.toml                 Site configuration
+content/
+  _index.md               Home page intro text
+  privacy-policy.md       Privacy policy page
+layouts/
+  index.html              Home page (cover image, intro, PDF buttons)
+  _default/baseof.html    Shared page shell and footer
+  _default/single.html    Template for inner pages
+  404.html                Not-found page
+static/
+  css/style.css           Site styles
+  fonts/                  Karla font files (self-hosted, with license)
+  wp-content/uploads/     Cover image and book PDF
+  _headers                Cloudflare security and caching headers
 ```
 
-Get them from the live site:
-- https://kitzis.org/wp-content/uploads/2022/02/Mind-and-Meaning.pdf
-- https://kitzis.org/wp-content/uploads/2022/02/Screenshot_3-edited.jpg
+## Running locally
 
-Do this **before** shutting down WordPress. If you have other uploads you want to keep, copy `wp-content/uploads/` from your WordPress host the same way.
-
-## 2. Preview locally
-
-Install Hugo (extended), then:
+Install [Hugo](https://gohugo.io/installation/) (any recent version), then from the repository root:
 
 ```
 hugo server
 ```
 
-and open http://localhost:1313.
+and open http://localhost:1313. To build the site into `public/`:
 
-## 3. Deploy on Cloudflare Pages
+```
+hugo --minify
+```
 
-1. Push this folder to a GitHub (or GitLab) repo.
-2. Cloudflare dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**, and pick the repo.
-3. Build settings:
-   - Framework preset: **Hugo**
-   - Build command: `hugo --minify`
-   - Build output directory: `public`
-   - Environment variable: `HUGO_VERSION` = a recent version, e.g. `0.169.0`
-4. Deploy. You get a `*.pages.dev` URL to check first.
-5. When it looks right: project → **Custom domains** → add `kitzis.org` (and `www` if you use it). If the domain's DNS is already on Cloudflare this is automatic; otherwise follow the prompts.
-6. After DNS has switched and the site works, you can cancel the WordPress hosting.
+## Editing
 
-(No Git? You can also use **Direct Upload**: run `hugo --minify` and upload the `public/` folder.)
+- **Intro text:** `content/_index.md`
+- **Privacy policy:** `content/privacy-policy.md`
+- **Page layout and buttons:** `layouts/index.html`
+- **Colors and sizes:** `static/css/style.css`. The `SIZE SETTINGS` block at the top controls text size, button size, cover image width and page width.
+- **Book PDF and cover image:** replace the files in `static/wp-content/uploads/2022/02/`, keeping the same file names. The paths match the old WordPress site, so existing links to the PDF keep working.
 
-## Notes
+## Deployment
 
-- **Old privacy link:** WordPress used `https://kitzis.org/?page_id=3`. The new URL is `/privacy-policy/`. Cloudflare Pages' `_redirects` file can't match query strings, so the old link will just land on the home page. If it matters, add a Cloudflare Redirect Rule matching URI query `page_id=3` → `/privacy-policy/`.
-- **Privacy policy text:** migrated word for word. It mentions forms, comments and tracking, which a static site doesn't have; you may want to simplify it.
-- **Other WordPress URLs:** the live site exposes only the home page and the privacy policy, so no other redirects are needed. If you had hidden posts or `/feed/` subscribers, tell me and I'll add them.
-- `static/_headers` sets basic security headers and long caching for the uploaded files.
+The site deploys automatically from this repository using Cloudflare Pages. Every push to the main branch triggers a new build.
+
+Cloudflare Pages settings:
+
+| Setting | Value |
+|---|---|
+| Framework preset | Hugo |
+| Build command | `hugo --minify` |
+| Build output directory | `public` |
+| Environment variable | `HUGO_VERSION` (optional; pins the Hugo version) |
+
+## Credits
+
+- Built with [Hugo](https://gohugo.io/).
+- Typeface: [Karla](https://fonts.google.com/specimen/Karla), self-hosted under the SIL Open Font License (see `static/fonts/KARLA-LICENSE.txt`).
